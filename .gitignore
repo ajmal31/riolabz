@@ -1,0 +1,7 @@
+
+node_modules/
+
+# Ignore package-lock.json or yarn.lock
+package-lock.json
+
+

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Main Categories</title>
+</head>
+<body>
+  <h1>Main categories</h1>
+  <% console.log('helo,') %>
+ <% Response.forEach(element => { %>
+
+  <h3><%=element.name %></h3> 
+  <% element.category?.forEach(e => { %>
+        <h4>sub:-<%= e.name %></h4>
+  <% }) %>
+ <% }) %>
+
+<br>
+<br>
+ <a href="/admin/getAddCategory"><button>ADD CATEGORY</button></a>
+ <a href="/admin/getAddSubcategory"> <button>ADD SUB CATEGORY </button></a>
+</body>
+</html>

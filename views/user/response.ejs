@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <span style="display: flex;">
+        <% response?.forEach(element => { %>
+            <a href="/showSubcategories/<%=element.name%>"><h1><%= element.name %> &nbsp;&nbsp;&nbsp;</h1></a> 
+        <% }) %>
+        
+    </span>
+</body>
+</html>

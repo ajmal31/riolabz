@@ -1,0 +1,30 @@
+<body>
+ 
+ 
+    <h1>Add Subcategory</h1>
+    <form action="/admin/addSubcategory" method="POST">
+      <label for="name">Subcategory Name:</label>
+      <input type="text" id="name" name="name" required>
+  
+      <!-- <label for="id">Subcategory ID:</label> -->
+      <!-- <input type="text" id="id" name="id" required> -->
+      <h3>choose parent category</h3>
+       <h4>main categories</h4>
+      <% response1?.forEach(element => { %>
+       <span style="display: flex;"><input type="radio" name="parentCategory" value="<%=element.name%>"><h3><%= element.name %></h3></span>
+      <% }) %>
+
+    
+      <h1>sub categories</h1>
+      <% response2?.forEach(element => { %>
+    <input type="radio" required checked name="parentCategory" value="<%=element.name%>"><h3><%= element.name %></h3>
+    
+      <% }) %>
+    
+      <input type="submit" value="Add Subcategory">
+    </form>
+  
+    
+  </body>
+  </html>
+  
