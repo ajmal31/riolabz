@@ -5,38 +5,76 @@ const bcrypt=require('bcrypt')
 const mainCategory = require('../../Schema/Admin/mainCategory')
 const { default: mongoose } = require('mongoose')
 const subCategory = require('../../Schema/Admin/subCategory')
-
+const collection='masterAdmin'
 module.exports={
 
     superAdminLogin:(data)=>{
 
+    
+         return new Promise((resolve,reject)=>{
 
 
-        return Promise((resolve,reject)=>{
-
-                  superAdmin.findOne({email:data.email,password:data.password}).then((response)=>{
-
-                    if(response)
-                    {
-                        console.log('login success super admin');
-                        resolve(response)
-                    }else
-                    {
-                        console.log('login failed');
-                    }
-                  })
-
-        })
+            superAdmin.findOne({email:data.email}).then((response)=>{
+                console.log(response.password,data.password)
+                
+                if(response.password===data.password)
+                {
+                    console.log('corerct password')
+                    resolve({status:true})
+                }else
+                {
+                    resolve({status:false})
+                    console.log('incoorent password')
+                }
+            })
+            
+         }).catch((err)=>{
+            console.log('super admin error fond',err)
+         })
         
     },
+    postLogin:(data)=>{
+        return new Promise((resolve, reject) => {
+        let password;
+
+        admin.findOne({ email: data.email }).then((response) => {
+
+            if (response) {
+                console.log('email done');
+
+                bcrypt.compare(data.password, response.password, function (err, result) {
+
+                    if (result) {
+                        console.log('authentiaction success')
+                        resolve({status:true});
+                    } else if (err) {
+
+                        console.log('authentiaction failed error found')
+                    }
+
+                });
+
+
+            }else
+            {
+                console.log('user not found')
+                resolve({status:false})
+            }
+
+
+        })
+    })
+
+    },
     listUsers:()=>{
-        return new Promise((Resolve,reject)=>{
+        return new Promise((resolve,reject)=>{
 
             User.find().then((response)=>{
 
                 if(response)
                 {
-                    console.log('got all users',response);
+                    
+                    resolve(response)
                 }else
                 {
                     console.log("didn'tget users list");
@@ -46,31 +84,26 @@ module.exports={
     },
     makeAdmin:(uid)=>{
         return new Promise((resolve,reject)=>{
-
-            User.aggregate([
-                { $match: { _id: uid } }, // Match the user by their ID
-                {
-                  $project: {
-                    _id: 0, // Exclude the "_id" field from the projection
-                    userId: '$_id',
-                    userName: '$userName',
-                    email: '$email',
-                    password:'$password'
-                    // Add any other relevant fields
-                  }
-                },
-                { $out: admin } // Save the aggregated data to the "admin" collection
-              ]).then((response)=>{
-
-                if(response)
-                {
-                    console.log('user will be a admin')
-                }else{
-                    console.log('some error found when super admin make to admin from users')
-                }
-
+            console.log(uid,'userid')
+           User.findOne({_id:uid}).then((response)=>{
+            console.log('user details',response.userName)
                
-              })
+            const data=new admin({
+                name:response.userName,
+                user_id:response._id,
+                email:response.email,
+                password:response.password
+            })
+            console.log(data)
+
+            data.save().then((response)=>{
+                console.log('user is a admin')
+                resolve({status:true})
+                
+            })
+           })   
+
+              
         })
     },
     removeAdmin:(id)=>{
@@ -80,6 +113,8 @@ module.exports={
             if(response)
             {
                 console.log('admin delted successfully');
+                resolve({status:true})
+
             }else
             {
                 console.log('some error found when removing admin')

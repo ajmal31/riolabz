@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User List</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .user-table {
+      margin-top: 50px;
+      animation: slide-up 1s ease-in-out;
+    }
+
+    .user-table thead {
+      background-color: #f8f9fa;
+    }
+
+    .user-table th {
+      font-weight: bold;
+    }
+
+    .user-table tbody tr {
+      animation: fade-in 1s ease-in-out;
+    }
+
+    @keyframes slide-up {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <table class="table user-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% let x=1 %>
+       
+        <% Response.forEach(element => { %>
+         
+        
+        <tr>
+          <td><%= x++ %></td>
+          <td><%= element.userName %></td>
+          <td><%= element.email %></td>
+          <td><a href="/admin/makeAdmin/<%= element._id %>"><Button>make admin</Button></a></td>
+         
+          
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <a href="/signup">AddUser</a>
+    
+  </div>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -36,9 +36,22 @@
               <a class="nav-link disabled" href="#">Disabled</a>
             </li>
           </ul>
-          <li class="nav-item">
-            <a class="nav-link" href="/login">Login</a>
-          </li>
+          <% if (user) { %>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+                <a class="nav-link" href="/showProfile/<%= user._id%>"><%=user.userName%></a>
+              </li>
+           
+          <% }else{%>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Login</a>
+               
+              </li>
+
+          <%} %>
+            
+            
+          
         </div>
       </nav>
     <h1>categoreis</h1>

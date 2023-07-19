@@ -6,6 +6,7 @@ var logger = require('morgan');
 const db=require('./Config/db.connection')
 var adminRouters = require('./routes/adminRouters');
 var userRouters = require('./routes/userRouters');
+var session = require('express-session')
 
 var app = express();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}))
 
 app.use('/', userRouters);
 app.use('/admin',adminRouters);

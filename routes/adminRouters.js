@@ -1,17 +1,25 @@
 var express = require('express');
 var router = express.Router();
-const adminController=require('../Controller/Admin/adminController')
+const adminController=require('../Controller/Admin/adminController');
+const userController = require('../Controller/User/userController');
+const superAdminAuthentication = require('../Middleware/superAdminAuthentication');
 
 
 router.get('/',adminController.home)
-//ADMIN LOGIN
-router.post('/login',adminController.superpostLogin)
 
-//  LIST ALL USERS
-router.get('/listUsers',adminController.listUsers)
+//GET ADMIN LOGIN
+router.get('/login',adminController.getLogin)
 
-//MAKE ADMIN BY SUPER ADMIN
-router.get('/makeAdmin/:id',adminController.makeAdmin)
+router.post('/login',adminController.postLogin)
+
+// //GET SUPER ADMIN LOGIN
+router.get('/superAdminLogin',adminController.getSuperAdminLogin)
+//super admin login
+router.post('/superPostLogin',adminController.superpostLogin)
+
+
+
+
 
 //GET ADD CATEGORY
 router.get('/getAddCategory',adminController.getAddCategory)
@@ -30,5 +38,19 @@ router.post('/addSubcategory',adminController.postAddSubCategory)
 
 //GET ADD SUBCATEGORY
 router.get('/getAddSubcategory',adminController.getAddSubCategory)
+
+
+
+//MIDDLE WARE//CEHCK SUPER ADMIN LOGGED OR NOT 
+router.use(superAdminAuthentication.superAdminAuth)
+
+//  LIST ALL USERS
+router.get('/listUsers',adminController.listUsers)
+
+//MAKE ADMIN BY SUPER ADMIN
+router.get('/makeAdmin/:id',adminController.makeAdmin)
+
+//SUPER ADMIN LOGOUT
+router.get('/superAdminLogout',adminController.superAdminLogout)
 
 module.exports = router;

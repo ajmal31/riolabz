@@ -4,8 +4,8 @@ const schema=mongoose.Schema
 const superAdminSchema=new schema({
 
     email:{type:String, unique:true },
-    password:{type:String,unique:true}
+    password:{type:String}
 
 })
 
-module.exports=mongoose.model('superAdmin',superAdminSchema)
+module.exports=mongoose.model('masterAdmin',superAdminSchema)

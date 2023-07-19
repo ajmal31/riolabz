@@ -5,24 +5,58 @@ module.exports={
      
 
     getLogin:(req,res)=>{
-        return new Promise((resolve,reject)=>{
+        
            res.render('user/login')
-        })
+        
     },
+    showProfile:(req,res)=>{
+      
+      let user=req.session.userDetails
+     
+        res.render('user/showProfile',{user})
+    },
+    getLogout:(req,res)=>{
+        req.session.userDetails=false
+        res.render('user/login')
+     
+   },
+    getSignup:(req,res)=>{
+        
+           res.render('user/signup')
+        
+    },
+    
     signup:(req,res)=>{
 
         const data=req.body
         userHelper.signup(data).then((response)=>{
-
+         
+           res.redirect('/login')
         })
     },
     login:(req,res)=>{
         
         const data=req.body
+       
         userHelper.login(data).then((response)=>{
+          
+          if(response.status)
+          {
+            req.session.userDetails=response.response
+            res.redirect('/',)
+          }else
+          {
+            res.redirect('/login')
+          }  
 
             
         })
+    },
+    getEditUser:(req,res)=>{
+        
+        // let user=req.session.userDetails
+        console.log('reached');
+        res.render('user/editProfile')
     },
     editUser:(req,res)=>{
 
@@ -30,7 +64,7 @@ module.exports={
         const uid=req.params.id
 
         userHelper.editUser(data,uid).then((response)=>{
-
+         res.redirect('/admin')
            
         })
     },
@@ -43,8 +77,9 @@ module.exports={
     },
     categories:(req,res)=>{
         adminHelper.getCategories().then((response)=>{
-
-            res.render('user/categories',{response})
+             user=req.session.userDetails
+             console.log(user,'hhj');
+            res.render('user/categories',{response,user})
 
         })
        

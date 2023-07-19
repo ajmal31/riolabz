@@ -16,40 +16,43 @@ module.exports = {
                     console.log('error found when creating hash password');
 
                 }
+                console.log('hrffe',hash)
                 hashedPassword = hash;
+                const user = new User({
+
+                    userName: data.userName,
+                    email: data.email,
+                    password: hashedPassword
+    
+    
+                })
+                user.save().then((response) => {
+
+                    if (response) {
+                        console.log('user signup succesfulll');
+
+                        resolve(data)
+                    } else {
+                        console.log('user signup failed');
+                    }
+                }).catch((error) => {
+                    console.log('error founded1!!!', error.message)
+                })
+    
+            })
 
             });
 
 
 
-            const user = new User({
+           
 
-                userName: data.userName,
-                email: data.email,
-                password: hashedPassword
-
-
-            })
-
-            user.save().then((response) => {
-
-                if (response) {
-                    console.log('user signup succesfulll');
-                } else {
-                    console.log('user signup failed');
-                }
-            })
-
-        }).catch((error) => {
-            console.log('error founded1!!!', error.message)
-        })
+            
     },
     login: (data) => {
         return new Promise((resolve, reject) => {
 
             let password;
-
-
 
             User.findOne({ email: data.email }).then((response) => {
 
@@ -60,14 +63,19 @@ module.exports = {
 
                         if (result) {
                             console.log('authentiaction success')
-                            console.log(result);
+                            resolve({status:true,response});
                         } else if (err) {
+
                             console.log('authentiaction failed error found')
                         }
 
                     });
 
 
+                }else
+                {
+                    console.log('user not found')
+                    resolve({status:false})
                 }
 
 
@@ -86,6 +94,9 @@ module.exports = {
             })
         })
     },
+    
+   
+
     editUser: (data, uid) => {
         return new Promise((resolve, reject) => {
 
@@ -93,6 +104,7 @@ module.exports = {
 
                 if (response) {
                     console.log('user edited succesfulll', response)
+                    resolve({status:true})
                 } else {
                     console.log('user not updated some issues existing')
                 }

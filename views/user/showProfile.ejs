@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Animated Page</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Custom CSS Styles */
+    .animated {
+      animation-duration: 3s;
+      animation-fill-mode: both;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .fadeIn {
+      animation-name: fadeIn;
+    }
+
+    /* Add more custom CSS and animations as needed */
+
+    /* Add your own custom styles here */
+  </style>
+</head>
+<body>
+  <header>
+    <!-- Add your animated header content here -->
+    <% console.log('front2',user) %>
+    <h2 class="animated fadeIn">Hi,<%= user.userName %></h2>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <!-- Add your animated profile details here -->
+        <div class="animated fadeIn">
+          <h2>About Me</h2>
+          <h3>email:-<%= user.email %></h3>
+          <h3>username:-<%= user.userName %></h3>
+        </div>
+        <a href="/editUserProfile">edit user profile</a>
+      </div>
+      
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    // Custom JavaScript Code
