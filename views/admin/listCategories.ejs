@@ -5,10 +5,10 @@
 </head>
 <body>
   <h1>Main categories</h1>
-  <% console.log('helo,') %>
- <% Response.forEach(element => { %>
+ 
+ <% Response?.forEach(element => { %>
 
-  <h3><%=element.name %></h3> 
+  <h3><%=element?.name %></h3> 
   <% element.category?.forEach(e => { %>
         <h4>sub:-<%= e.name %></h4>
   <% }) %>

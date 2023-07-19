@@ -11,13 +11,13 @@
       <h3>choose parent category</h3>
        <h4>main categories</h4>
       <% response1?.forEach(element => { %>
-       <span style="display: flex;"><input type="radio" name="parentCategory" value="<%=element.name%>"><h3><%= element.name %></h3></span>
+       <span style="display: flex;"><input type="radio" name="parentCategory" value="<%=element?.name%>"><h3><%= element.name %></h3></span>
       <% }) %>
 
     
       <h1>sub categories</h1>
       <% response2?.forEach(element => { %>
-    <input type="radio" required checked name="parentCategory" value="<%=element.name%>"><h3><%= element.name %></h3>
+    <input type="radio" required checked name="parentCategory" value="<%=element?.name%>"><h3><%= element?.name %></h3>
     
       <% }) %>
     

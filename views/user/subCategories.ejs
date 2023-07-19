@@ -12,7 +12,7 @@
     <% }else{%>
         <span style="display: flex;">
             <% response?.forEach(element => { %>
-                <a href="/showSubcategories/<%=element.name%>"><h1><%= element.name %> &nbsp;&nbsp;&nbsp;</h1></a> 
+                <a href="/showSubcategories/<%=element?.name%>"><h1><%= element?.name %> &nbsp;&nbsp;&nbsp;</h1></a> 
             <% }) %>
             
         </span>

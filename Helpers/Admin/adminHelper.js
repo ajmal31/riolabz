@@ -188,34 +188,7 @@ module.exports={
             })
         })
     },
-    // getIndivitualMainCategory:(uid)=>{
-    //     return new Promise((resolve,reject)=>{
-    //     console.log('helo');
-    //   console.log(uid)
-    //        mainCategory.findOne({_id:uid})
-    //        .then((response)=>{
-    //         console.log('response',response)
-    //         resolve(response)
-    //        }).catch((err)=>{
-    //         console.log(err.message)
-    //        })
-    //     })
-    // },
-    // addSubCategory:(data)=>{
-    //     return new Promise((resolve,reject)=>{
-
-            
-    //         const cat=new subCategory({
-    //             name:data.name,
-    //             parentCategory:data.parentCategory
-    //         })
-    //         cat.save().then((response)=>{
-    //             resolve(response)
-    //         })
-
-            
-    //     })
-    // },
+    
     addSubCategory: async (data) => {
         try {
           const cat = new subCategory({
