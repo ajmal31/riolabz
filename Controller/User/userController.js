@@ -90,7 +90,7 @@ module.exports={
   console.log('helo coontroller');
             userHelper.showSubCategories(mainCatName).then((response)=>{
 
-                res.render('user/response',{response})
+                res.render('user/subCategories',{response})
             })    
     }
    

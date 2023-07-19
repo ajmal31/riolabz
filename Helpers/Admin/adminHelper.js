@@ -201,21 +201,34 @@ module.exports={
     //        })
     //     })
     // },
-    addSubCategory:(data)=>{
-        return new Promise((resolve,reject)=>{
+    // addSubCategory:(data)=>{
+    //     return new Promise((resolve,reject)=>{
 
             
-            const cat=new subCategory({
-                name:data.name,
-                parentCategory:data.parentCategory
-            })
-            cat.save().then((response)=>{
-                resolve(response)
-            })
+    //         const cat=new subCategory({
+    //             name:data.name,
+    //             parentCategory:data.parentCategory
+    //         })
+    //         cat.save().then((response)=>{
+    //             resolve(response)
+    //         })
 
             
-        })
-    },
+    //     })
+    // },
+    addSubCategory: async (data) => {
+        try {
+          const cat = new subCategory({
+            name: data.name,
+            parentCategory: data.parentCategory,
+          });
+          const response = await cat.save();
+          return response;
+        } catch (error) {
+          throw error;
+        }
+      },
+      
     getSubcategories:(req,res)=>{
 
         return new Promise((resolve,reject)=>{
