@@ -8,7 +8,7 @@
   
       <!-- <label for="id">Subcategory ID:</label> -->
       <!-- <input type="text" id="id" name="id" required> -->
-      <h3>choose parent category</h3>
+      <h3>choose parent category (mandatory)</h3>
        <h4>main categories</h4>
       <% response1?.forEach(element => { %>
        <span style="display: flex;"><input type="radio" name="parentCategory" value="<%=element?.name%>"><h3><%= element.name %></h3></span>
