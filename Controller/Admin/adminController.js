@@ -48,6 +48,7 @@ module.exports={
     removeAdmin:(req,res)=>{
 
         const id=req.params.id
+        console.log('done ');
         adminHelper.removeAdmin(id).then((response)=>{
           if(response.status)
           {

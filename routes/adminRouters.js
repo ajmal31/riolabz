@@ -3,6 +3,7 @@ var router = express.Router();
 const adminController=require('../Controller/Admin/adminController');
 const userController = require('../Controller/User/userController');
 const superAdminAuthentication = require('../Middleware/superAdminAuthentication');
+const superOradmin=require('../Middleware/superAdminAndAdmin')
 
 
 router.get('/',adminController.home)
@@ -52,5 +53,7 @@ router.get('/makeAdmin/:id',adminController.makeAdmin)
 
 //SUPER ADMIN LOGOUT
 router.get('/superAdminLogout',adminController.superAdminLogout)
+
+router.get('/removeAdmin/:id',adminController.removeAdmin)
 
 module.exports = router;

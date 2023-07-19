@@ -15,21 +15,26 @@ module.exports={
 
 
             superAdmin.findOne({email:data.email}).then((response)=>{
-                console.log(response.password,data.password)
-                
-                if(response.password===data.password)
+                if(!response)
+                {
+                   resolve({status:false})
+                }else
+                {
+                    if(response.password===data.password)
                 {
                     console.log('corerct password')
                     resolve({status:true})
                 }else
                 {
                     resolve({status:false})
-                    console.log('incoorent password')
+                    console.log('incorrent password')
                 }
+                }
+                
             })
             
          }).catch((err)=>{
-            console.log('super admin error fond',err)
+            console.log('super admin error found',err)
          })
         
     },
@@ -85,7 +90,7 @@ module.exports={
     makeAdmin:(uid)=>{
         return new Promise((resolve,reject)=>{
             console.log(uid,'userid')
-           User.findOne({_id:uid}).then((response)=>{
+           User.findByIdAndUpdate({_id:uid},{$set:{position:'admin'}}).then((response)=>{
             console.log('user details',response.userName)
                
             const data=new admin({
@@ -112,8 +117,12 @@ module.exports={
            admin.deleteOne({_id:id}).then((response)=>{
             if(response)
             {
-                console.log('admin delted successfully');
-                resolve({status:true})
+                User.updateOne({_id:id},{$set:{position:'user'}}).then((response)=>{
+                    
+                    console.log('admin delted successfully');
+                    resolve({status:true})
+                })
+                
 
             }else
             {

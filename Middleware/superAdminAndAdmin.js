@@ -1,15 +1,14 @@
 module.exports={
 
-    superAdminAuth:(req,res,next)=>{
+    twotypeAuth:(req,res,next)=>{
 
-      if(req.session.superAdmin)
+      if(req.session.superAdmin||req.session.Admin)
       {
           next();
       }
       else
-      {
-          
+      {  
           res.redirect('/admin/superAdminLogin')
       }
   }
-}
+}   

@@ -65,8 +65,14 @@
           <td><%= x++ %></td>
           <td><%= element.userName %></td>
           <td><%= element.email %></td>
-          <td><a href="/admin/makeAdmin/<%= element._id %>"><Button>make admin</Button></a></td>
-         
+          <% if (element.position==='user') { %>
+            <td><a href="/admin/makeAdmin/<%= element._id %>"><Button>make admin</Button></a></td> 
+          <% }else {%>
+            <td><a href="/admin/removeAdmin/<%= element._id %>"><Button>remove  admin</Button></a></td>
+         <% } %>
+          
+        
+          <!-- <td><a href="/admin/editUser/<%= element._id %>"><Button>edit user</Button></a></td> -->
           
         </tr>
         <% }) %>

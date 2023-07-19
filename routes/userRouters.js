@@ -25,7 +25,7 @@ router.post('/login',userController.login)
 router.get('/userProfile',userController.userProfile)
 
 //edit user profile
-router.post('/editUser/:id',userAuth.userAuthentication, userController.editUser)
+router.post('/editUser/:id',userController.editUser)
 
 router.get('/editUserProfile',userController.getEditUser)
 
@@ -33,11 +33,6 @@ router.get('/editUserProfile',userController.getEditUser)
 router.get('/',userController.categories)
 
 router.get('/showSubcategories/:name',userController.showSubCategories)
-
-
-
-
-
 
 
 module.exports = router;

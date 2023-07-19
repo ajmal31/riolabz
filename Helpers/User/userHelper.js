@@ -22,14 +22,15 @@ module.exports = {
 
                     userName: data.userName,
                     email: data.email,
-                    password: hashedPassword
+                    password: hashedPassword,
+                    position:'user'
     
     
                 })
                 user.save().then((response) => {
 
                     if (response) {
-                        console.log('user signup succesfulll');
+                        
 
                         resolve(data)
                     } else {
@@ -62,7 +63,7 @@ module.exports = {
                     bcrypt.compare(data.password, response.password, function (err, result) {
 
                         if (result) {
-                            console.log('authentiaction success')
+                        
                             resolve({status:true,response});
                         } else if (err) {
 
@@ -103,7 +104,7 @@ module.exports = {
             User.updateOne({ _id: uid }, { $set: { userName: data.userName, email: data.email } }).then((response) => {
 
                 if (response) {
-                    console.log('user edited succesfulll', response)
+                  
                     resolve({status:true})
                 } else {
                     console.log('user not updated some issues existing')
