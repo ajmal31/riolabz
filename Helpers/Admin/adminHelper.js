@@ -226,6 +226,13 @@ module.exports={
             })
         })
         
+    },
+    getUser:(id)=>{
+        return new Promise((resolve,reject)=>{
+            User.findOne({_id:id}).then((response)=>{
+                resolve(response)
+            })
+        })
     }
 
     

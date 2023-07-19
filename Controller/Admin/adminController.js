@@ -1,4 +1,6 @@
 const adminHelper=require('../../Helpers/Admin/adminHelper')
+const userHelper = require('../../Helpers/User/userHelper')
+const userController = require('../User/userController')
 
 
 module.exports={
@@ -21,6 +23,12 @@ module.exports={
         })
 
        
+    },
+    adminLogout:(req,res)=>{
+         
+        req.session.Admin=false;
+        res.redirect('/admin')
+
     },
     listUsers:(req,res)=>{
 
@@ -146,6 +154,17 @@ module.exports={
         req.session.superAdmin=false
         
         res.redirect('/admin/login')
+    },
+    editUser:(req,res)=>{
+    
+        console.log('done3');
+        const id=req.params.id
+        console.log('done4');
+        adminHelper.getUser(id).then((response)=>{
+            const user=response
+            res.render('admin/editUser',{user})
+        })
+        
     }
 
 

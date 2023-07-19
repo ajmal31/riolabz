@@ -98,10 +98,10 @@ module.exports = {
     
    
 
-    editUser: (data, uid) => {
+    editUser: (data) => {
         return new Promise((resolve, reject) => {
-
-            User.updateOne({ _id: uid }, { $set: { userName: data.userName, email: data.email } }).then((response) => {
+            console.log('updating data',data)
+            User.updateOne({ _id: data._id },{ $set:{userName: data.userName, email: data.email } }).then((response) => {
 
                 if (response) {
                   

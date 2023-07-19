@@ -60,11 +60,11 @@ module.exports={
     },
     editUser:(req,res)=>{
 
+       
         const data=req.body
-        const uid=req.params.id
-
-        userHelper.editUser(data,uid).then((response)=>{
-         res.redirect('/admin')
+       
+        userHelper.editUser(data).then((response)=>{
+         res.redirect('/')
            
         })
     },
@@ -78,7 +78,7 @@ module.exports={
     categories:(req,res)=>{
         adminHelper.getCategories().then((response)=>{
              user=req.session.userDetails
-             console.log(user,'hhj');
+             
             res.render('user/categories',{response,user})
 
         })

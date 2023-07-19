@@ -35,7 +35,7 @@
         <form class="animated slideIn" action="/editUser" method="post">
           <h2>Edit Profile</h2>
           <div class="form-group">
-            <input type="text" name="_id" value="<%= user._id %>">
+            <input type="hidden" name="_id"  value="<%= user._id %>">
             <label for="name">Name</label>
             <input type="text" class="form-control" name="userName" value="<%= user.userName %>" placeholder="Enter your name">
           </div>

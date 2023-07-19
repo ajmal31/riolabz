@@ -25,7 +25,7 @@ router.post('/login',userController.login)
 router.get('/userProfile',userController.userProfile)
 
 //edit user profile
-router.post('/editUser/:id',userController.editUser)
+router.post('/editUser',userController.editUser)
 
 router.get('/editUserProfile',userController.getEditUser)
 

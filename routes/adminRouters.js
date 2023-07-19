@@ -3,7 +3,8 @@ var router = express.Router();
 const adminController=require('../Controller/Admin/adminController');
 const userController = require('../Controller/User/userController');
 const superAdminAuthentication = require('../Middleware/superAdminAuthentication');
-const superOradmin=require('../Middleware/superAdminAndAdmin')
+const superOradmin=require('../Middleware/superAdminAndAdmin');
+const admin = require('../Schema/Admin/admin');
 
 
 router.get('/',adminController.home)
@@ -18,8 +19,9 @@ router.get('/superAdminLogin',adminController.getSuperAdminLogin)
 //super admin login
 router.post('/superPostLogin',adminController.superpostLogin)
 
+router.get('/adminLogout',adminController.adminLogout)
 
-
+router.use(superOradmin.twotypeAuth)
 
 
 //GET ADD CATEGORY
@@ -30,9 +32,6 @@ router.post('/createCategory',adminController.createCategory)
 
 //GET CATEGORY LIST
 router.get('/getMainCategory',adminController.getMainCategory)
-
-//GET ADD SUBCATEGORY
-// router.get('/addSubCategories/:id',adminController.getAddSubCategory)
 
 //POST ADD SUBCATEGORY
 router.post('/addSubcategory',adminController.postAddSubCategory)
@@ -50,6 +49,9 @@ router.get('/listUsers',adminController.listUsers)
 
 //MAKE ADMIN BY SUPER ADMIN
 router.get('/makeAdmin/:id',adminController.makeAdmin)
+
+//GET EDIT USER
+router.get('/editUser/:id',adminController.editUser)
 
 //SUPER ADMIN LOGOUT
 router.get('/superAdminLogout',adminController.superAdminLogout)
